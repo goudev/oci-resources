@@ -26,7 +26,7 @@ func GetInstance(instanceOcid string, region ...string) (core.Instance, error) {
 
         resp, innerErr := client.GetInstance(ctx, req)
         if innerErr != nil {
-            return innerErr // Retorna o erro para que RetryWithBackoff possa decidir retentar
+            return innerErr
         }
 
         instance = resp.Instance
@@ -41,7 +41,7 @@ func GetInstance(instanceOcid string, region ...string) (core.Instance, error) {
 }
 
 
-func GetAllInstances() ([]core.Instance, error) {
+func ListAllInstances() ([]core.Instance, error) {
     var allInstances []core.Instance
 
     regions, err := GetAllRegions()
