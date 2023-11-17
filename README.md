@@ -7,7 +7,7 @@ Este módulo fornece funcionalidades para interagir com o Oracle Cloud Infrastru
 Para usar este módulo em seu projeto Go:
 
 ```bash
-go get github.com/goudev/oci-resource
+go get github.com/goudev/oci-resources@v1.0.0
 ```
 
 ## Uso
@@ -15,6 +15,37 @@ go get github.com/goudev/oci-resource
 Aqui está uma visão geral de como utilizar uma das funções.
 
 ### Listar todas as instâncias
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/goudev/oci-resources/oci"
+)
+
+func main(){
+	fmt.Println(oci.GetAllInstances())
+}
+```
+
+# Lista de funções disponíveis
+
+## Compute
+
+- GetInstance(instanceOcid string, region string)
+- ListAllInstances()
+
+## Compute
+
+- GetInstance(instanceOcid string, region string)
+- ListAllInstances()
+
+## Analytics Instance
+
+- GetAnalyticsInstance(analyticsInstanceOCID string, region ...string)
+- ListAllAnalyticsInstances()
 
 # Contribuindo com o plugin
 
