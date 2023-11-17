@@ -32,20 +32,78 @@ func main(){
 
 # Lista de funções disponíveis
 
-## Compute
+## Analytics
 
-- GetInstance(instanceOcid string, region string)
-- ListAllInstances()
-
-## Compute
-
-- GetInstance(instanceOcid string, region string)
-- ListAllInstances()
-
-## Analytics Instance
-
-- GetAnalyticsInstance(analyticsInstanceOCID string, region ...string)
+- GetAnalyticsInstance(analyticsInstanceOCID
 - ListAllAnalyticsInstances()
+
+## Blockstorage
+
+- GetBootVolume(bootVolumeOCID, region ...string)
+- ListAllBootVolumes()
+- GetBootVolumeAttachment(attachmentOCID, region ...string)
+- ListAllBootVolumeAttachments()
+- GetBlockVolume(blockVolumeOCID, region ...string)
+- ListAllBlockVolumeAttachments()
+- GetBlockVolumeAttachment(volumeAttachmentOCID, region ...string)
+- ListAllBlockVolumes()
+
+## Database
+
+- ListAllDatabases()
+- ListAllCloudExadataInfrastructures()
+- ListAllDbNodes()
+- ListAllCloudVmClusters()
+
+## Identity
+
+- ListAllCompartments()
+
+## Instance
+
+- GetInstance(instanceOcid, region ...string)
+- ListAllInstances()
+
+## Network
+
+- GetVCN(vcnOCID, region ...string)
+- ListAllVCNs()
+- GetSubnet(subnetOCID, region ...string)
+- ListAllSubnets()
+- GetNatGateway(natGatewayOCID, region ...string)
+- ListAllNatGateways()
+- GetServiceGateway(serviceGatewayOCID, region ...string)
+- ListAllServiceGateways()
+- GetRouteTable(routeTableOCID, region ...string)
+- ListAllRouteTables()
+- GetSecurityList(securityListOCID, region ...string)
+- ListAllSecurityLists()
+- GetInternetGateway(internetGatewayOCID, region ...string)
+- ListAllInternetGateways()
+- GetDrg(drgOCID, region ...string)
+- ListAllDrgs()
+- GetDrgAttachment(drgAttachmentOCID, region ...string)
+- ListAllDrgAttachments()
+- GetDrgRouteTable(drgRouteTableOCID, region ...string)
+- ListAllDrgRouteTables()
+- GetDrgRouteDistribution(drgRouteDistributionOCID, region ...string)
+- ListAllDrgRouteDistributions()
+- GetLocalPeeringGateway(localPeeringGatewayOCID, region ...string)
+- ListAllLocalPeeringGateways()
+- GetDhcpDnsOption(dhcpOptionsOCID, region ...string)
+- ListAllDhcpDnsOptions()
+- GetNetworkSecurityGroup(networkSecurityGroupOCID, region ...string)
+- ListAllNetworkSecurityGroups()
+- GetIPSecConnection(ipSecConnectionId, region ...string)
+- ListAllIPSecConnection()
+
+## Region
+
+- GetAllRegions()
+
+## Resourcesearch
+
+- ResourceSearch(query, region ...string)
 
 # Contribuindo com o plugin
 
