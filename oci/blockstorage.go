@@ -2,7 +2,6 @@ package oci
 
 import (
 	"context"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/common"
 	"github.com/oracle/oci-go-sdk/v65/core"
@@ -38,7 +37,7 @@ func GetBootVolume(bootVolumeOCID string, region ...string) (BootVolume, error) 
 
 	var extendedBootVolume BootVolume
 
-	err = util.RetryWithBackoff(5, func() error {
+	err = RetryWithBackoff(5, func() error {
 		ctx := context.Background()
 		req := core.GetBootVolumeRequest{
 			BootVolumeId: common.String(bootVolumeOCID),
@@ -90,7 +89,7 @@ func ListAllBootVolumes() ([]BootVolume, error) {
                 if summary.Identifier != nil {
                     var bootVolumeDetails BootVolume
 
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         var innerErr error
                         bootVolumeDetails, innerErr = GetBootVolume(*summary.Identifier, *region.RegionName)
                         return innerErr
@@ -121,7 +120,7 @@ func GetBootVolumeAttachment(attachmentOCID string) (core.BootVolumeAttachment, 
     ctx := context.Background()
 
     // Usando RetryWithBackoff para retentativas
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         req := core.GetBootVolumeAttachmentRequest{
             BootVolumeAttachmentId: common.String(attachmentOCID),
         }
@@ -176,7 +175,7 @@ func ListAllBootVolumeAttachments() ([]core.BootVolumeAttachment, error) {
                         BootVolumeId:       summary.Identifier,
                     }
 
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         var innerErr error
                         for {
                             response, innerErr := computeClient.ListBootVolumeAttachments(ctx, request)
@@ -216,7 +215,7 @@ func GetBlockVolume(blockVolumeOCID string, region ...string) (Volume, error) {
     }
 
     var extendedVolume Volume
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetVolumeRequest{
             VolumeId: common.String(blockVolumeOCID),
@@ -278,7 +277,7 @@ func ListAllBlockVolumeAttachments() ([]core.VolumeAttachment, error) {
                         VolumeId:       summary.Identifier,
                     }
 
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         var innerErr error
                         for {
                             response, innerErr := computeClient.ListVolumeAttachments(ctx, request)
@@ -313,7 +312,7 @@ func GetBlockVolumeAttachment(volumeAttachmentOCID string) (core.VolumeAttachmen
     }
 
     var attachment core.VolumeAttachment
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetVolumeAttachmentRequest{
             VolumeAttachmentId: common.String(volumeAttachmentOCID),
@@ -356,7 +355,7 @@ func ListAllBlockVolumes() ([]Volume, error) {
                 if summary.Identifier != nil {
                     var blockVolumeDetails Volume
 
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         var innerErr error
                         blockVolumeDetails, innerErr = GetBlockVolume(*summary.Identifier, *region.RegionName)
                         return innerErr

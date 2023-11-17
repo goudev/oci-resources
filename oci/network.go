@@ -3,7 +3,6 @@ package oci
 import (
 	"context"
 	"log"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/common"
 	"github.com/oracle/oci-go-sdk/v65/core"
@@ -133,7 +132,7 @@ func GetVCN(vcnOCID string, region ...string) (core.Vcn, error) {
     }
 
     // Usando RetryWithBackoff para retentativas
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetVcnRequest{
             VcnId: common.String(vcnOCID),
@@ -175,7 +174,7 @@ func ListAllVCNs() ([]Vcn, error) {
             for _, summary := range resourceSummaries {
                 if summary.ResourceType != nil && *summary.ResourceType == "Vcn" && summary.Identifier != nil {
                     var extendedVcn Vcn
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -228,7 +227,7 @@ func GetSubnet(subnetOCID string, region ...string) (core.Subnet, error) {
     }
 
     // Usando RetryWithBackoff para retentativas
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetSubnetRequest{
             SubnetId: common.String(subnetOCID),
@@ -270,7 +269,7 @@ func ListAllSubnets() ([]Subnet, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var extendedSubnet Subnet
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -321,7 +320,7 @@ func GetNatGateway(natGatewayOCID string, region ...string) (core.NatGateway, er
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetNatGatewayRequest{
             NatGatewayId: common.String(natGatewayOCID),
@@ -361,7 +360,7 @@ func ListAllNatGateways() ([]NatGateway, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var natGateway NatGateway
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -408,7 +407,7 @@ func GetServiceGateway(serviceGatewayOCID string, region ...string) (core.Servic
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetServiceGatewayRequest{
             ServiceGatewayId: common.String(serviceGatewayOCID),
@@ -448,7 +447,7 @@ func ListAllServiceGateways() ([]ServiceGateway, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var serviceGateway ServiceGateway
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -495,7 +494,7 @@ func GetRouteTable(routeTableOCID string, region ...string) (core.RouteTable, er
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetRouteTableRequest{
             RtId: common.String(routeTableOCID),
@@ -535,7 +534,7 @@ func ListAllRouteTables() ([]RouteTable, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var routeTable RouteTable
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -582,7 +581,7 @@ func GetSecurityList(securityListOCID string, region ...string) (core.SecurityLi
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetSecurityListRequest{
             SecurityListId: common.String(securityListOCID),
@@ -622,7 +621,7 @@ func ListAllSecurityLists() ([]SecurityList, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var securityList SecurityList
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -669,7 +668,7 @@ func GetInternetGateway(internetGatewayOCID string, region ...string) (core.Inte
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetInternetGatewayRequest{
             IgId: common.String(internetGatewayOCID),
@@ -709,7 +708,7 @@ func ListAllInternetGateways() ([]InternetGateway, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var internetGateway InternetGateway
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -757,7 +756,7 @@ func GetDrg(drgOCID string, region ...string) (core.Drg, error) {
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetDrgRequest{
             DrgId: common.String(drgOCID),
@@ -797,7 +796,7 @@ func ListAllDrgs() ([]Drg, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var drg Drg
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -845,7 +844,7 @@ func GetDrgAttachment(drgAttachmentOCID string, region ...string) (core.DrgAttac
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetDrgAttachmentRequest{
             DrgAttachmentId: common.String(drgAttachmentOCID),
@@ -885,7 +884,7 @@ func ListAllDrgAttachments() ([]DrgAttachment, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var drgAttachment DrgAttachment
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             log.Fatal(innerErr)
@@ -934,7 +933,7 @@ func GetDrgRouteTable(drgRouteTableOCID string, region ...string) (core.DrgRoute
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetDrgRouteTableRequest{
             DrgRouteTableId: common.String(drgRouteTableOCID),
@@ -974,7 +973,7 @@ func ListAllDrgRouteTables() ([]DrgRouteTable, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var drgRouteTable DrgRouteTable
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             log.Fatal(innerErr)
@@ -1023,7 +1022,7 @@ func GetDrgRouteDistribution(drgRouteDistributionOCID string, region ...string) 
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetDrgRouteDistributionRequest{
             DrgRouteDistributionId: common.String(drgRouteDistributionOCID),
@@ -1063,7 +1062,7 @@ func ListAllDrgRouteDistributions() ([]DrgRouteDistribution, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var drgRouteDistribution DrgRouteDistribution
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             log.Fatal(innerErr)
@@ -1112,7 +1111,7 @@ func GetLocalPeeringGateway(localPeeringGatewayOCID string, region ...string) (c
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetLocalPeeringGatewayRequest{
             LocalPeeringGatewayId: common.String(localPeeringGatewayOCID),
@@ -1152,7 +1151,7 @@ func ListAllLocalPeeringGateways() ([]LocalPeeringGateway, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var localPeeringGateway LocalPeeringGateway
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             log.Fatal(innerErr)
@@ -1201,7 +1200,7 @@ func GetDhcpDnsOption(dhcpOptionsOCID string, region ...string) (core.DhcpOption
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetDhcpOptionsRequest{
             DhcpId: common.String(dhcpOptionsOCID),
@@ -1241,7 +1240,7 @@ func ListAllDhcpDnsOptions() ([]DhcpDnsOption, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var dhcpDnsOption DhcpDnsOption
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -1290,7 +1289,7 @@ func GetNetworkSecurityGroup(networkSecurityGroupOCID string, region ...string) 
         client.SetRegion(region[0])
     }
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetNetworkSecurityGroupRequest{
             NetworkSecurityGroupId: common.String(networkSecurityGroupOCID),
@@ -1330,7 +1329,7 @@ func ListAllNetworkSecurityGroups() ([]NetworkSecurityGroup, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var networkSecurityGroupWithRegion NetworkSecurityGroup
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             log.Fatal(innerErr)
@@ -1380,7 +1379,7 @@ func GetIPSecConnection(ipSecConnectionId, regionName string) (*IpSecConnection,
 
     client.SetRegion(regionName)
 
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
         req := core.GetIPSecConnectionRequest{
             OpcRequestId: common.String(ipSecConnectionId),
@@ -1423,7 +1422,7 @@ func ListAllIPSecConnection() ([]IpSecConnection, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var ipSecConnection IpSecConnection
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         networkingClient, innerErr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr

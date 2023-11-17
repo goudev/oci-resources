@@ -2,7 +2,6 @@ package oci
 
 import (
 	"context"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/common"
 	"github.com/oracle/oci-go-sdk/v65/database"
@@ -28,7 +27,7 @@ func ListAllDatabases() ([]database.Database, error) {
             for _, summary := range resourceSummaries {
                 if summary.ResourceType != nil && *summary.ResourceType == "Database" && summary.Identifier != nil {
                     var databaseDetails database.Database
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         dbClient, innerErr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -83,7 +82,7 @@ func ListAllCloudExadataInfrastructures() ([]database.CloudExadataInfrastructure
             for _, summary := range resourceSummaries {
                 if summary.ResourceType != nil && *summary.ResourceType == "CloudExadataInfrastructure" && summary.Identifier != nil {
                     var cloudExadataInfrastructure database.CloudExadataInfrastructure
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         dbClient, innerErr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -138,7 +137,7 @@ func ListAllDbNodes() ([]database.DbNode, error) {
             for _, summary := range resourceSummaries {
                 if summary.ResourceType != nil && *summary.ResourceType == "DbNode" && summary.Identifier != nil {
                     var dbNode database.DbNode
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         dbClient, innerErr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
@@ -193,7 +192,7 @@ func ListAllCloudVmClusters() ([]database.CloudVmCluster, error) {
             for _, summary := range resourceSummaries {
                 if summary.ResourceType != nil && *summary.ResourceType == "CloudVmCluster" && summary.Identifier != nil {
                     var cloudVmCluster database.CloudVmCluster
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         dbClient, innerErr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr

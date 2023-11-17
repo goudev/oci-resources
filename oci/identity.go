@@ -2,7 +2,6 @@ package oci
 
 import (
 	"context"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/common"
 	"github.com/oracle/oci-go-sdk/v65/identity"
@@ -23,7 +22,7 @@ func ListAllCompartments() ([]identity.Compartment, error) {
     var currentPage *string = nil
 
     for {
-        err = util.RetryWithBackoff(5, func() error {
+        err = RetryWithBackoff(5, func() error {
             ctx := context.Background()
             request := identity.ListCompartmentsRequest{
                 CompartmentId:          common.String(tenancyID),

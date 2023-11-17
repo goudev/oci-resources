@@ -2,7 +2,6 @@ package oci
 
 import (
 	"context"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/common"
 	"github.com/oracle/oci-go-sdk/v65/identity"
@@ -15,7 +14,7 @@ func GetAllRegions() ([]identity.RegionSubscription, error) {
     }
 
     var regionSubscriptions []identity.RegionSubscription
-    err = util.RetryWithBackoff(5, func() error {
+    err = RetryWithBackoff(5, func() error {
         ctx := context.Background()
 
         // Primeiro, obtemos o OCID da tenancy do cliente

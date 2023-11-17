@@ -2,7 +2,6 @@ package oci
 
 import (
 	"context"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/common"
 	"github.com/oracle/oci-go-sdk/v65/resourcesearch"
@@ -24,7 +23,7 @@ func ResourceSearch(query string, region ...string) ([]resourcesearch.ResourceSu
     var currentPage *string = nil
 
     for {
-        err = util.RetryWithBackoff(5, func() error {
+        err = RetryWithBackoff(5, func() error {
             ctx := context.Background()
             searchReq := resourcesearch.SearchResourcesRequest{
                 SearchDetails: resourcesearch.StructuredSearchDetails{

@@ -2,7 +2,6 @@ package oci
 
 import (
 	"context"
-	"oci-sdk-go/pkg/util"
 
 	"github.com/oracle/oci-go-sdk/v65/analytics" // Este import pode variar
 	"github.com/oracle/oci-go-sdk/v65/common"
@@ -56,7 +55,7 @@ func ListAllAnalyticsInstances() ([]AnalyticsInstance, error) {
             for _, summary := range resourceSummaries {
                 if summary.Identifier != nil {
                     var analyticsInstance AnalyticsInstance
-                    err := util.RetryWithBackoff(5, func() error {
+                    err := RetryWithBackoff(5, func() error {
                         client, innerErr := analytics.NewAnalyticsClientWithConfigurationProvider(common.DefaultConfigProvider())
                         if innerErr != nil {
                             return innerErr
