@@ -1,4 +1,4 @@
-module oci-sdk-go
+module oci-resources
 
 go 1.20
 
