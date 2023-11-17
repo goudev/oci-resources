@@ -1,4 +1,4 @@
-module oci-resources
+module github.com/goudev/oci-resources
 
 go 1.20
 
